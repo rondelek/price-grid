@@ -1,0 +1,109 @@
+@import './utils/variables';
+@import './utils/mixins';
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap");
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: 
+    "upper upper"
+    "left right";
+    width: 100vw;
+    min-width: 300px;
+    padding: 100px 200px;
+    overflow: hidden;
+    font-family: Lato;
+
+    &__upper {
+        grid-area: upper;
+        background-color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        & h1 {
+            color: $cyan;
+        }
+        & h2 {
+            color: $bright-yellow;
+        }
+
+        & p {
+            color: $grayish-blue;
+        }
+        
+    }
+
+    &__left {
+        grid-area: left;
+        background-color: $cyan;
+        border-bottom-left-radius: 10px;
+        color: $light-gray;
+            span {
+                @include setFlex(row, left);
+                gap: 10px;
+                p {
+                    opacity: .5;
+                }
+            }
+
+            button {
+                padding: 10px 15px;
+                background-color: $bright-yellow;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 0 20px 30px hsla(0,0%, 0%, .2);
+                color: white;
+                font-size: 1rem;
+                font-weight: bolder;
+                cursor: pointer;
+            }
+
+            button:active {
+                box-shadow: none;
+            }
+       
+    }
+
+    &__right {
+        grid-area: right;
+        background-color: hsl(179, 55%, 49%);
+        border-bottom-right-radius: 10px;
+        color: $light-gray;
+        p {
+            opacity: .7;
+        }
+    }
+}
+
+.item {
+    @include setFlex(column, left, left);
+    gap: 20px;
+    box-shadow: 0 10px 20px hsla(0,0%, 0%, .2);
+    padding: 40px;
+}
+
+
+@media (max-width: 800px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+
+        &__left {
+            border-bottom-left-radius: 0;
+        }
+
+        &__right {
+            grid-area: right;
+            background-color: hsl(179, 55%, 49%);
+            border-bottom-left-radius: 10px;
+        }
+    }
+
+}
